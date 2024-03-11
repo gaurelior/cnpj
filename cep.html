@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <title>Nuvens</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+  <!-- Inicio do formulario -->
+  <form method="get" action=".">
+    <label>CNPJ:
+      <input name="CNPJ" type="text" id="CNPJ" value=""
+        onblur="pesquisaCNPJ(this.value);" /></label><br />
+    <label>Razão social:
+      <input name="nome_social" type="text" id="nome_social" size="60" /></label><br />
+    <label>Nome fantasia:
+      <input name="nome_fantasia" type="text" id="nome_fantasia" size="40" /></label><br />
+    <label>Bairro:
+      <input name="Bairro" type="text" id="Bairro" size="40" /></label><br />
+    <label>capital_social:
+      <input name="capital_social" type="text" id="capital_social" size="40" /></label><br />
+    <label>CEP:
+      <input name="CEP" type="text" id="CEP" size="40" /></label><br />
+    <label>Nome fantasia:
+      <input name="nome_fantasia" type="text" id="nome_fantasia" size="40" /></label><br />
+    <label>Nome fantasia:
+      <input name="nome_fantasia" type="text" id="nome_fantasia" size="40" /></label><br />
+    <label>Nome fantasia:
+      <input name="nome_fantasia" type="text" id="nome_fantasia" size="40" /></label><br />
+  </form>
+  <script>
+    function pesquisaCNPJ(cnpj) {
+      fetch("https://cors-anywhere.herokuapp.com/https://receitaws.com.br/v1/cnpj/" + cnpj).then((response) => {
+        if(response.ok) {
+          return response.json();
+        }
+      }).then((dados) => {
+        console.log(dados)
+        document.getElementById("nome_social").value = dados.nome;
+        document.getElementById("nome_fantasia").value = dados.fantasia;
+        document.getElementById("Bairro").value = dados.bairro;
+        document.getElementById("capital_social").value = dados.capital;
+        document.getElementById("CEP").value = dados.cep;
+        document.getElementById("nome_fantasia").value = dados.fantasia;
+        document.getElementById("nome_fantasia").value = dados.fantasia;
+      });
+    }
+  </script>
+</body>
+
+</html>
